@@ -180,7 +180,7 @@ COPY ./Dockerfile /usr/share/gitdir/
 有了Dockerfile之后，就可以利用build命令构建镜像了：
 
 ```text
-[root@xxx ~]# docker build -t="zhongzhanhui/centos:gitdir" .
+docker build -t="zhongzhanhui/centos:gitdir" .
 ```
 
 其中-t用来指定新镜像的用户信息、tag等。最后的点表示在当前目录寻找Dockerfile。
@@ -193,9 +193,38 @@ COPY ./Dockerfile /usr/share/gitdir/
 > RUN yum update && yum install -y git
 > ```
 
-然而镜像一直构建不成功，安装git总是报错，估计是网络问题。暂且不管了。
+然而镜像一直构建不成功，安装git总是报错，估计是网络问题。
 
+姑且换成下面的操作，只复制文件进入镜像，不执行安装git或vim的操作，Dockerfile如下
 
+```bash
+# 说明该镜像以哪个镜像为基础
+FROM centos:latest
+
+# 构建者的基本信息
+MAINTAINER zhongzhanhui
+
+# 在build这个镜像时执行的操作，不run，因为总是网络不行
+
+# 拷贝文件到镜像中
+COPY ./only_a_file /usr/share
+```
+
+构建镜像
+
+```bash
+docker build -t="zhongzhanhui/centos:try_dockerfile" .
+```
+
+运行结果如下
+
+![1575897103961](docker.assets/1575897103961.png)
+
+可见镜像创建成功，启动容器检查是否进行了文件复制操作：
+
+![1575897188149](docker.assets/1575897188149.png)
+
+可见确实复制了文件进入镜像中
 
 ### 4、删除/保存镜像
 
