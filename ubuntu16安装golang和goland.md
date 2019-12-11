@@ -17,7 +17,22 @@
    ```bash
    export PATH=$PATH:/usr/local/go/bin
    ```
-
+   注意这种方法只是临时将go路径添加至环境变量，重新打开terminal后会失效，输入命令
+   
+   ```bash
+   echo $PATH
+   ```
+   
+   会发现路径里`/usr/local/go/bin`消失了，为了将目录永久添加到 $PATH ，需要将"export"的那行添加到.bashrc或/etc/bashrc文件中。
+   
+   ```bash
+   sudo gedit ~/.bashrc
+   ```
+   
+   将`export PATH=$PATH:/usr/local/go/bin`找个空位添加进去后保存退出，关闭Terminal，重新打开Terminal，然后go的路径就会一直在PATH中了。
+   
+   
+   
 4. 验证安装：
 
    ```bash
