@@ -1,4 +1,4 @@
-教程地址：[Gin_高性能_Golang_Web_框架的介绍和使用]([https://www.yoytang.com/go-gin-doc.html#Gin%20%E7%9A%84%E4%BD%BF%E7%94%A8](https://www.yoytang.com/go-gin-doc.html#Gin 的使用))
+教程地址：[Gin_高性能_Golang_Web_框架的介绍和使用](https://www.yoytang.com/go-gin-doc.html))
 
 教程里没有细讲的部分比如如何写curl命令等，参考[gin框架学习手册](https://www.cnblogs.com/-beyond/p/9391892.html)
 
