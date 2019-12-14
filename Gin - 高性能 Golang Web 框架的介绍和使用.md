@@ -1,4 +1,4 @@
-教程地址：[Gin_高性能 Golang Web 框架的介绍和使用]([https://www.yoytang.com/go-gin-doc.html#Gin%20%E7%9A%84%E4%BD%BF%E7%94%A8](https://www.yoytang.com/go-gin-doc.html#Gin 的使用))
+教程地址：[Gin_高性能_Golang_Web_框架的介绍和使用]([https://www.yoytang.com/go-gin-doc.html#Gin%20%E7%9A%84%E4%BD%BF%E7%94%A8](https://www.yoytang.com/go-gin-doc.html#Gin 的使用))
 
 教程里没有细讲的部分比如如何写curl命令等，参考[gin框架学习手册](https://www.cnblogs.com/-beyond/p/9391892.html)
 
@@ -23,7 +23,7 @@ $ go get -u github.com/gin-gonic/gin #更新就是常规的 `go get -u`。
 
 GoLand选择New Project
 
-![1576128938601](Gin_高性能 Golang Web 框架的介绍和使用.assets/1576128938601.png)
+![1576128938601](Gin_高性能_Golang_Web_框架的介绍和使用.assets/1576128938601.png)
 
 Location填写项目的目录和名称，Proxy选择好代理地址，不要勾选Vendoring mode，如果勾选了Vendoring mode的话，它会把依赖包复制到当前项目目录下的vendor文件夹里，这其实是没有必要的，依赖包下载到默认的 GOPATH/pkg/mod 下就ok了。项目创建完后出现 `go.mod`文件，里面只有项目名和go version。
 
@@ -70,11 +70,11 @@ require github.com/gin-gonic/gin v1.5.0
 
 打开Terminal，输入`go run main.go`运行项目，结果如下
 
-![1576129554331](Gin_高性能 Golang Web 框架的介绍和使用.assets/1576129554331.png)
+![1576129554331](Gin_高性能_Golang_Web_框架的介绍和使用.assets/1576129554331.png)
 
 打开浏览器访问http://127.0.0.1:9205/，得到响应hello world
 
-![1576129614858](Gin_高性能 Golang Web 框架的介绍和使用.assets/1576129614858.png)
+![1576129614858](Gin_高性能_Golang_Web_框架的介绍和使用.assets/1576129614858.png)
 
 ## 路由(Router)
 
@@ -109,7 +109,7 @@ func getting(context *gin.Context){
 
 在浏览器访问`http://127.0.0.1:8080/someGet`，得到
 
-![1576153099927](Gin_高性能 Golang Web 框架的介绍和使用.assets/1576153099927.png)
+![1576153099927](Gin_高性能_Golang_Web_框架的介绍和使用.assets/1576153099927.png)
 
 ### 动态路由（参数路由）
 
@@ -150,9 +150,9 @@ func main() {
 
 运行结果如下：
 
-![1576153952167](Gin_高性能 Golang Web 框架的介绍和使用.assets/1576153952167.png)
+![1576153952167](Gin_高性能_Golang_Web_框架的介绍和使用.assets/1576153952167.png)
 
-![1576153869042](Gin_高性能 Golang Web 框架的介绍和使用.assets/1576153869042.png)![1576153883866](Gin_高性能 Golang Web 框架的介绍和使用.assets/1576153883866.png)![1576153903862](Gin_高性能 Golang Web 框架的介绍和使用.assets/1576153903862.png)
+![1576153869042](Gin_高性能_Golang_Web_框架的介绍和使用.assets/1576153869042.png)![1576153883866](Gin_高性能_Golang_Web_框架的介绍和使用.assets/1576153883866.png)![1576153903862](Gin_高性能_Golang_Web_框架的介绍和使用.assets/1576153903862.png)
 
 可见是无法识别 /user 的
 
@@ -188,7 +188,7 @@ func homepage(ctx *gin.Context){
 }
 ```
 
-![1576154502926](Gin_高性能 Golang Web 框架的介绍和使用.assets/1576154502926.png)
+![1576154502926](Gin_高性能_Golang_Web_框架的介绍和使用.assets/1576154502926.png)
 
 ## 中间件(Middleware)
 
@@ -237,7 +237,7 @@ func handler(c *gin.Context) {
 
 通过`c.Next()`可以在中间件中控制调用逻辑的变化。上述代码中，访问`localhost:8080/someGet`时，先调用`middleware1`，输出"exec middleware1"后由于有`c.Next()`，跳转到下一个中间件`middleware2`，在`middleware2`中先输出"arrive at middleware2"后由于有`c.Next()`，跳转到下一个handler，输出完"exec handler"后回到`middleware2`中执行完剩下的代码。运行结果如下：
 
-![1576302168893](Gin_高性能 Golang Web 框架的介绍和使用.assets/1576302168893.png)
+![1576302168893](Gin_高性能_Golang_Web_框架的介绍和使用.assets/1576302168893.png)
 
 ### 路由组使用中间件
 
@@ -277,7 +277,7 @@ func middleware(c *gin.Context) {
 
 运行结果
 
-![1576302429181](Gin_高性能 Golang Web 框架的介绍和使用.assets/1576302429181.png)
+![1576302429181](Gin_高性能_Golang_Web_框架的介绍和使用.assets/1576302429181.png)
 
 
 
@@ -312,7 +312,7 @@ func register(ctx *gin.Context){
 }
 ```
 
-![1576303191135](Gin_高性能 Golang Web 框架的介绍和使用.assets/1576303191135.png)
+![1576303191135](Gin_高性能_Golang_Web_框架的介绍和使用.assets/1576303191135.png)
 
 
 
@@ -380,7 +380,7 @@ curl -F file=@/tmp/me.txt http://www.aiezu.com
 curl -X POST -d "username=zzh&password=123" 127.0.0.1:8080/api/register
 ```
 
-![1576304583129](Gin_高性能 Golang Web 框架的介绍和使用.assets/1576304583129.png)
+![1576304583129](Gin_高性能_Golang_Web_框架的介绍和使用.assets/1576304583129.png)
 
 > 拓展：[四种常见的 POST 提交数据方式](https://imququ.com/post/four-ways-to-post-data-in-http.html)
 
@@ -449,7 +449,7 @@ func register(ctx *gin.Context){
 curl "127.0.0.1:8080/api/register?name=zzh&pwd=123"
 ```
 
-![1576308194354](Gin_高性能 Golang Web 框架的介绍和使用.assets/1576308194354.png)
+![1576308194354](Gin_高性能_Golang_Web_框架的介绍和使用.assets/1576308194354.png)
 
 
 
@@ -498,7 +498,7 @@ func register(ctx *gin.Context){
 curl -X POST -d "name=zzh&pwd=123" "127.0.0.1:8080/api/register"
 ```
 
-![1576309004481](Gin_高性能 Golang Web 框架的介绍和使用.assets/1576309004481.png)
+![1576309004481](Gin_高性能_Golang_Web_框架的介绍和使用.assets/1576309004481.png)
 
 
 
@@ -574,7 +574,7 @@ curl -X POST -d "name=zzh&pwd=123" "http://localhost:8080/api/registerJSON"
 
 运行结果：
 
-![1576325632379](Gin_高性能 Golang Web 框架的介绍和使用.assets/1576325632379.png)
+![1576325632379](Gin_高性能_Golang_Web_框架的介绍和使用.assets/1576325632379.png)
 
 除了绑定验证之外，你还可以注册自定义的验证器。这部分比较麻烦的样子，先跳过。
 
@@ -740,13 +740,13 @@ go test -v -cover
 
 测试结果：
 
-![1576334438472](Gin_高性能 Golang Web 框架的介绍和使用.assets/1576334438472.png)
+![1576334438472](Gin_高性能_Golang_Web_框架的介绍和使用.assets/1576334438472.png)
 
 可见测试通过，即响应正常（code=200）且响应值为字符串`"pong"`
 
 `"pong\n" != "pong"`，assert的时候如果响应字符串有换行符，测试时断言assert会不通过，如下
 
-![1576334599961](Gin_高性能 Golang Web 框架的介绍和使用.assets/1576334599961.png)
+![1576334599961](Gin_高性能_Golang_Web_框架的介绍和使用.assets/1576334599961.png)
 
 
 
