@@ -236,6 +236,13 @@ docker rmi image_name/image_id   #再删除镜像
 docker rmi imageid     #或者可以根据id删除镜像
 ```
 
+删除所有容器和镜像
+
+```bash
+docker  rm $(docker ps -a -q)
+docker rmi $(docker images -q)
+```
+
 保存加载镜像
 
 ```bash
