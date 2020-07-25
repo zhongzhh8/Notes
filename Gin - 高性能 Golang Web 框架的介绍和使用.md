@@ -361,7 +361,7 @@ curl http://www.baidu.com
 #get方式提交数据：
 curl -G -d "name=value&name2=value2" http://www.baidu.com
 
-#post方式提交数据：
+#post方式提交数据：curl -X POST -d "name=value&name2=value2" http://www.baidu.com 
 curl -X POST -d "name=value&name2=value2" http://www.baidu.com 
 
 #post方式提交json数据：
@@ -373,6 +373,18 @@ curl -X PATCH -d "name=value&name2=value2" http://www.baidu.com
 #以表单的方式上传文件，相当于设置form表单的method="POST"和enctype='multipart/form-data'两个属性。
 curl -F file=@/tmp/me.txt http://www.aiezu.com
 ```
+
+上面两个post方式可以写成以下形式，更加统一美观：
+
+```shell
+#form形式传参
+curl --header "Content-Type:application/x-www-form-urlencoded" -X POST --data "ad_platform=zzh&begin_time=20200726" "http://localhost:9205/user_requests/create"
+
+#json形式传参
+curl --header "Content-Type:application/json" -X POST --data '{"ad_platform":"xiaomi", "begin_time":"20200726"}' "http://localhost:9205/user_requests/create"
+```
+
+需要注意的是，gin的PostForm方法只能接收 `multipart/form-data`和`application/x-www-form-urlencoded`格式，如果想要接收application/json格式，需要用数据绑定的方法。
 
 因此这里我们要跑的命令如下（注意最好用双引号把地址给围起来，否则可能会出错，这里没有用双引号，不够规范）：
 
@@ -402,7 +414,7 @@ curl -X POST -d "username=zzh&password=123" 127.0.0.1:8080/api/register
 
 ## 数据绑定
 
-数据绑定可以将用户传来的参数自动跟我们定义的结构体绑定在一起。
+数据绑定可以将用户传来的参数自动跟我们定义的结构体绑定在一起。（想要接收application/json格式的post请求，就必须使用数据绑定方法）
 
 ### 绑定 Get参数
 
