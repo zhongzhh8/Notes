@@ -45,7 +45,7 @@ consumer从topic中读取消息。
 
 ## 例子
 
-<img src="/Users/bytedance/Desktop/google_event_sending_task/kafka笔记.assets/image-20200628165738391.png" alt="image-20200628165738391" style="zoom:50%;" /> 
+<img src="kafka笔记.assets/image-20200628165738391.png" alt="image-20200628165738391" style="zoom:50%;" /> 
 
 ### 生产
 
@@ -58,11 +58,11 @@ producer首先创建一条消息，包含以下内容：
 
 如果partition已填，就按照topic和partition将该消息放进对应分区的缓冲区中，等到缓冲区的消息数量足够多时，再分批次发送到kafka中存储该topic的该partition的broker中。
 
-<img src="/Users/bytedance/Desktop/google_event_sending_task/kafka笔记.assets/image-20200628172745513.png" alt="image-20200628172745513" style="zoom: 33%;" />  		
+<img src="kafka笔记.assets/image-20200628172745513.png" alt="image-20200628172745513" style="zoom: 33%;" />  		
 
 如果partition没填，就按照key进行哈希，映射到一个partition中（同一个key对应同一个partition），如果key也没填，就按照轮询调度算法来选partition：
 
-<img src="/Users/bytedance/Desktop/google_event_sending_task/kafka笔记.assets/image-20200628173045647.png" alt="image-20200628173045647" style="zoom: 33%;" /> 
+<img src="kafka笔记.assets/image-20200628173045647.png" alt="image-20200628173045647" style="zoom: 33%;" /> 
 
 
 
@@ -78,10 +78,10 @@ topic的订阅是以一个consumer group为单位来订阅的。
 
 如果只有一个consumer订阅一个topic，那么这个consumer就需要接受这个topic的所有分区的数据，压力很大。因此后来有了consumer group，其中每个partition只能由一个consumer接收，但是一个consumer可以接受多个partition的数据（左图）。如果consumer数量多于topic的partition数量，那么必然有consumer闲置（右图）。
 
-<img src="/Users/bytedance/Desktop/google_event_sending_task/kafka笔记.assets/image-20200628173950665.png" alt="image-20200628173950665" style="zoom:33%;" />  			<img src="/Users/bytedance/Desktop/google_event_sending_task/kafka笔记.assets/image-20200628174032919.png" alt="image-20200628174032919" style="zoom:33%;" /> 
+<img src="kafka笔记.assets/image-20200628173950665.png" alt="image-20200628173950665" style="zoom:33%;" />  			<img src="kafka笔记.assets/image-20200628174032919.png" alt="image-20200628174032919" style="zoom:33%;" /> 
 
 一个topic可以由多个consumer group消费
-<img src="/Users/bytedance/Desktop/google_event_sending_task/kafka笔记.assets/image-20200628174257803.png" alt="image-20200628174257803" style="zoom:25%;" /> 
+<img src="kafka笔记.assets/image-20200628174257803.png" alt="image-20200628174257803" style="zoom:25%;" /> 
 
 随着一个个的consumer加入consumer group，分区的所有权发生转移，这就叫做重平衡（rebalance），重平衡为consumer group带来了高可用性和伸缩性，能够处理consumer宕机或者有新consumer加入群组的问题，缺点是重平衡时所有consumer必须停止消费信息，直到重平衡完成。
 
